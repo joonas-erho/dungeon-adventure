@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4924f6ed8dbd0224cab4c84619550ea9, type: 3}
   m_Name: MoveLeft
   m_EditorClassIdentifier: 
-  actionName: Move Left
-  icon: {fileID: 0}
-  color: {r: 1, g: 0, b: 0.19144297, a: 1}
+  actionName: movel
+  icon: {fileID: -507118989, guid: 962f459f8eb42424db6feadb9445abf3, type: 3}
+  color: {r: 0.24007656, g: 0.69606006, b: 0.7830189, a: 1}

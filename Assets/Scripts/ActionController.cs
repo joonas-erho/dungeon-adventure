@@ -6,8 +6,10 @@ public class ActionController : MonoBehaviour
 {
     public ActionScriptableObject obj;
     public SpriteRenderer sr;
+    public SpriteRenderer iconSr;
 
     void Start() {
         sr.color = obj.color;
+        iconSr.sprite = obj.icon;
     }
 }
