@@ -12,4 +12,8 @@ public class ActionController : MonoBehaviour
         sr.color = obj.color;
         iconSr.sprite = obj.icon;
     }
+
+    void OnMouseDown() {
+        Debug.Log(obj.name);
+    }
 }
