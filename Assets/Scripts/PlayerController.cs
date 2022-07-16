@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Values that are only edited in editor.
     public float timeBetweenActions = 0.5f;
     public float speed = 5f;
 
     private bool isMoving = false;
     private Vector2 moveTargetLocation;
-    
+
     void Update() {
         // If we are supposed to be moving, move player towards target location.
         // Step is the max distance it can move per frame, controlled by the "speed" variable.
@@ -19,6 +20,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Executes the given actions.
+    /// </summary>
+    /// <param name="actions">A list of strings that correspond to different actions in Execute().</param>
     public IEnumerator ExecuteActions(List<string> actions) {
         foreach (string a in actions) {
             Execute(a);
@@ -27,6 +32,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Performs the given action (string). Logs errors, but this should never happen at runtime.
+    /// </summary>
+    /// <param name="action">String that corresponds to an action.</param>
     private void Execute(string action) {
         switch(action) {
             case "movel":
@@ -48,6 +57,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Makes the player move smoothly to the given position.
+    /// </summary>
+    /// <param name="x">Player position change on the x-axis.</param>
+    /// <param name="y">Player position change on the y-axis.</param>
     private void Move(int x, int y) {
         // Change the location that the player is supposed to move to by taking player's current
         // position and adding x and y to it. (For example, when moving left, add -1 and 0.)

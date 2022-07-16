@@ -40,6 +40,13 @@ public class GameController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates a game object that represents an Action.
+    /// </summary>
+    /// <param name="action">The scriptable object that dictates the action's look and functionality.</param>
+    /// <param name="parent">The game object that the created action will be a child to.</param>
+    /// <param name="position">The position of the action respective to its parent's position.</param>
+    /// <returns>The created GameObject.</returns>
     private GameObject CreateAction(ActionScriptableObject action, GameObject parent, Vector2 position) {
         // Create game object and add as child to action store in correct position.
         GameObject go = Instantiate(actionPrefab);
@@ -56,6 +63,10 @@ public class GameController : MonoBehaviour
         return go;
     }
 
+    /// <summary>
+    /// Adds an action to the queue by creating a new action and adding it to the queued actions list.
+    /// </summary>
+    /// <param name="action">The scriptable object to create the game object from.</param>
     public void AddActionToQueue(ActionScriptableObject action) {
         GameObject go =
             CreateAction(action,
@@ -64,12 +75,16 @@ public class GameController : MonoBehaviour
         queuedActions.Add(go.GetComponent<ActionController>());
     }
 
+    /// <summary>
+    /// Transforms the current queue of actions to strings and makes the player execute them.
+    /// </summary>
     public void Execute() {
         List<string> words = new List<string>();
         foreach (var actionController in queuedActions) {
             words.Add(actionController.GetWord());
         }
 
+        // Since ExecuteActions is a coroutine, we have to use StartCoroutine here.
         StartCoroutine(playerController.ExecuteActions(words));
     }
 }
