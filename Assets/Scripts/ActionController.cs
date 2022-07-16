@@ -27,6 +27,13 @@ public class ActionController : MonoBehaviour
         this.gameController = gc;
     }
 
+    /// <summary>
+    /// Returns the word that the playerController uses to identify which Action it is accessing.
+    /// </summary>
+    public string GetWord() {
+        return action.actionName;
+    }
+
     void OnMouseDown() {
         gameController.AddActionToQueue(action);
     }

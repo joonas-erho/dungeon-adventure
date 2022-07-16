@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1235261}
   - component: {fileID: 1235260}
+  - component: {fileID: 1235262}
+  - component: {fileID: 1235263}
   m_Layer: 0
   m_Name: Play Button
   m_TagString: Untagged
@@ -207,6 +209,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1235262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51557d52222f340429c67fd164a03181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameController: {fileID: 1092834975}
+--- !u!61 &1235263
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235259}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 1}
+    newSize: {x: 4.25, y: 2.84375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &69441045
 GameObject:
   m_ObjectHideFlags: 0
@@ -437,6 +478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionPrefab: {fileID: 4566816660539465745, guid: 0641e0f03de34ec4792c5464461be096, type: 3}
+  playerController: {fileID: 2005217074}
   actionStore: {fileID: 320237510}
   actionQueue: {fileID: 2015158044}
   actions:
@@ -733,7 +775,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenActions: 0.5
   speed: 3
-  actions: []
 --- !u!4 &2005217075
 Transform:
   m_ObjectHideFlags: 0

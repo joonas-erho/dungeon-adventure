@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour
     // Prefab for the Action boxes.
     public GameObject actionPrefab;
 
+    public PlayerController playerController;
+
     // The field that holds all the Actions that are available in this level.
     public GameObject actionStore;
 
@@ -60,5 +62,14 @@ public class GameController : MonoBehaviour
                          actionQueue,
                          new Vector2((queuedActions.Count % amountOfActionsInRow) * actionButtonGap, (queuedActions.Count / amountOfActionsInRow) * -actionButtonGap));
         queuedActions.Add(go.GetComponent<ActionController>());
+    }
+
+    public void Execute() {
+        List<string> words = new List<string>();
+        foreach (var actionController in queuedActions) {
+            words.Add(actionController.GetWord());
+        }
+
+        StartCoroutine(playerController.ExecuteActions(words));
     }
 }

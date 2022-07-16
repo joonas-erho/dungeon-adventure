@@ -6,15 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public float timeBetweenActions = 0.5f;
     public float speed = 5f;
-    public List<string> actions = new List<string>();
 
     private bool isMoving = false;
     private Vector2 moveTargetLocation;
-
-    void Start() {
-        StartCoroutine(ExecuteActions());
-    }
-
+    
     void Update() {
         // If we are supposed to be moving, move player towards target location.
         // Step is the max distance it can move per frame, controlled by the "speed" variable.
@@ -24,12 +19,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public IEnumerator ExecuteActions() {
-        actions.Add("movel");
-        actions.Add("moveu");
-        actions.Add("mover");
-        actions.Add("moved");
-
+    public IEnumerator ExecuteActions(List<string> actions) {
         foreach (string a in actions) {
             Execute(a);
             yield return new WaitForSeconds(timeBetweenActions);
