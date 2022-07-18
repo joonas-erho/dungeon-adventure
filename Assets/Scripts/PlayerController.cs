@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private Vector2 moveTargetLocation;
 
+    [SerializeField] private List<ItemScriptableObject> itemsInInventory = new List<ItemScriptableObject>();
+
+    public SpriteRenderer[] inventoryRenderers = new SpriteRenderer[3];
+
     void Update() {
         // If we are supposed to be moving, move player towards target location.
         // Step is the max distance it can move per frame, controlled by the "speed" variable.
@@ -57,6 +61,18 @@ public class PlayerController : MonoBehaviour
             case "movedown":
                 Move(0,-1,bottomCollider);
                 break;
+            case "pickup":
+                PickupItem();
+                break;
+            case "useitem0":
+                UseItem(0);
+                break;
+            case "useitem1":
+                UseItem(1);
+                break;
+            case "useitem2":
+                UseItem(2);
+                break;
             default:
                 // This should never happen in-game!
                 Debug.Log("Such action does not exist!");
@@ -88,6 +104,38 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.tag == "Goal") {
             Debug.Log("jee");
+        }
+    }
+
+    private void PickupItem() {
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(this.transform.position, 0.1f);
+        foreach (Collider2D other in collisions) {
+            if (other.tag == "Item" && itemsInInventory.Count < 3) {
+                ItemScriptableObject item = other.gameObject.GetComponent<ItemController>().item;
+                inventoryRenderers[itemsInInventory.Count].sprite = item.sprite;
+                itemsInInventory.Add(item);
+                Destroy(other.gameObject);
+            }
+        }
+    }
+    
+    private void UseItem(int index) {
+        if (itemsInInventory.Count <= index) {
+            return;
+        }
+
+        if (itemsInInventory[index] == null) {
+            return;
+        }
+
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(this.transform.position, 0.1f);
+        foreach (Collider2D other in collisions) {
+            if (other.tag == "Door" && itemsInInventory[index].itemName == "key") {
+                DoorController doorController = other.gameObject.GetComponent<DoorController>();
+                inventoryRenderers[index].sprite = null;
+                itemsInInventory[index] = null;
+                doorController.UseKey();
+            }
         }
     }
 }

@@ -87,4 +87,8 @@ public class GameController : MonoBehaviour
         // Since ExecuteActions is a coroutine, we have to use StartCoroutine here.
         StartCoroutine(playerController.ExecuteActions(words));
     }
+
+    public void StopExecute() {
+        
+    }
 }
