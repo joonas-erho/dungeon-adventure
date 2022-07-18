@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="x">Player position change on the x-axis.</param>
     /// <param name="y">Player position change on the y-axis.</param>
     private void Move(int x, int y, BoxCollider2D col) {
+
         if (Physics2D.IsTouching(col, wallsCollider)) {
             return;
         }
@@ -79,5 +80,14 @@ public class PlayerController : MonoBehaviour
 
         // Begin movement by enabling movement flag.
         isMoving = true;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Monster") {
+            Destroy(this.gameObject);
+        }
+        else if (other.tag == "Goal") {
+            Debug.Log("jee");
+        }
     }
 }
