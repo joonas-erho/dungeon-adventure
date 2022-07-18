@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
     // Values that are only edited in editor.
     public float timeBetweenActions = 0.5f;
     public float speed = 5f;
+
+    public BoxCollider2D leftCollider;
+    public BoxCollider2D rightCollider;
+    public BoxCollider2D topCollider;
+    public BoxCollider2D bottomCollider;
+    public TilemapCollider2D wallsCollider;
 
     private bool isMoving = false;
     private Vector2 moveTargetLocation;
@@ -39,16 +46,16 @@ public class PlayerController : MonoBehaviour
     private void Execute(string action) {
         switch(action) {
             case "movel":
-                Move(-1,0);
+                Move(-1,0,leftCollider);
                 break;
             case "moveu":
-                Move(0,1);
+                Move(0,1,topCollider);
                 break;
             case "mover":
-                Move(1,0);
+                Move(1,0,rightCollider);
                 break;
             case "moved":
-                Move(0,-1);
+                Move(0,-1,bottomCollider);
                 break;
             default:
                 // This should never happen in-game!
@@ -62,7 +69,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     /// <param name="x">Player position change on the x-axis.</param>
     /// <param name="y">Player position change on the y-axis.</param>
-    private void Move(int x, int y) {
+    private void Move(int x, int y, BoxCollider2D col) {
+        if (Physics2D.IsTouching(col, wallsCollider)) {
+            return;
+        }
         // Change the location that the player is supposed to move to by taking player's current
         // position and adding x and y to it. (For example, when moving left, add -1 and 0.)
         moveTargetLocation = new Vector2(this.transform.position.x + x, this.transform.position.y + y);
