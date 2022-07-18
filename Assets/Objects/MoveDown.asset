@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4924f6ed8dbd0224cab4c84619550ea9, type: 3}
   m_Name: MoveDown
   m_EditorClassIdentifier: 
-  actionName: moved
+  actionName: movedown
   icon: {fileID: -1623217706, guid: 962f459f8eb42424db6feadb9445abf3, type: 3}
   color: {r: 0.23921569, g: 0.69411767, b: 0.78431374, a: 1}

@@ -45,16 +45,16 @@ public class PlayerController : MonoBehaviour
     /// <param name="action">String that corresponds to an action.</param>
     private void Execute(string action) {
         switch(action) {
-            case "movel":
+            case "moveleft":
                 Move(-1,0,leftCollider);
                 break;
-            case "moveu":
-                Move(0,1,topCollider);
-                break;
-            case "mover":
+            case "moveright":
                 Move(1,0,rightCollider);
                 break;
-            case "moved":
+            case "moveup":
+                Move(0,1,topCollider);
+                break;
+            case "movedown":
                 Move(0,-1,bottomCollider);
                 break;
             default:
