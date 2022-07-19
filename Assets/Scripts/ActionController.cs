@@ -16,15 +16,18 @@ public class ActionController : MonoBehaviour
     public SpriteRenderer sr;
     public SpriteRenderer iconSr;
 
+    private bool isQueued = false;
+
     // On generation, set the look to match that of the scriptable object's.
     void Start() {
         sr.color = action.color;
         iconSr.sprite = action.icon;
     }
 
-    public void SetValues(ActionScriptableObject action, GameController gc) {
+    public void SetValues(ActionScriptableObject action, GameController gc, bool isQueued) {
         this.action = action;
         this.gameController = gc;
+        this.isQueued = isQueued;
     }
 
     /// <summary>
@@ -35,6 +38,11 @@ public class ActionController : MonoBehaviour
     }
 
     void OnMouseDown() {
-        gameController.AddActionToQueue(action);
+        if (!isQueued) {
+            gameController.AddActionToQueue(action);
+        }
+        else {
+            gameController.RemoveActionFromQueue(this);
+        }
     }
 }

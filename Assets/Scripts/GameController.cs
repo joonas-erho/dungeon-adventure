@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour
     /// <param name="list">List of actions as premade scriptable objects. (See Assets/Objects-folder.)</param>
     void GenerateAvailableActions(List<ActionScriptableObject> list) {
         for (int i = 0; i < list.Count; i++) {
-            CreateAction(list[i], actionStore, new Vector2((i % amountOfActionsInRow) * actionButtonGap, (i / amountOfActionsInRow) * -actionButtonGap));
+            CreateAction(list[i], actionStore, new Vector2((i % amountOfActionsInRow) * actionButtonGap, (i / amountOfActionsInRow) * -actionButtonGap), false);
         }
     }
 
@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
     /// <param name="parent">The game object that the created action will be a child to.</param>
     /// <param name="position">The position of the action respective to its parent's position.</param>
     /// <returns>The created GameObject.</returns>
-    private GameObject CreateAction(ActionScriptableObject action, GameObject parent, Vector2 position) {
+    private GameObject CreateAction(ActionScriptableObject action, GameObject parent, Vector2 position, bool isQueued) {
         // Create game object and add as child to action store in correct position.
         GameObject go = Instantiate(actionPrefab);
         go.transform.SetParent(parent.transform);
@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
         
         // Set the object of the created prefab as the one given in the list.
         // See ActionController for more information.
-        go.GetComponent<ActionController>().SetValues(action, this);
+        go.GetComponent<ActionController>().SetValues(action, this, isQueued);
 
         return go;
     }
@@ -71,8 +71,30 @@ public class GameController : MonoBehaviour
         GameObject go =
             CreateAction(action,
                          actionQueue,
-                         new Vector2((queuedActions.Count % amountOfActionsInRow) * actionButtonGap, (queuedActions.Count / amountOfActionsInRow) * -actionButtonGap));
+                         new Vector2((queuedActions.Count % amountOfActionsInRow) * actionButtonGap, (queuedActions.Count / amountOfActionsInRow) * -actionButtonGap),
+                         true);
         queuedActions.Add(go.GetComponent<ActionController>());
+    }
+
+    public void RemoveActionFromQueue(ActionController ac) {
+        int index = queuedActions.FindIndex(i => i == ac);
+        queuedActions.RemoveAt(index);
+        Destroy(ac.gameObject);
+        RefreshQueue();
+    }
+
+    private void RefreshQueue() {
+        for (int i = 0; i < queuedActions.Count; i++) {
+            GameObject go = queuedActions[i].gameObject;
+            go.transform.localPosition = new Vector2((i % amountOfActionsInRow) * actionButtonGap, (i / amountOfActionsInRow) * -actionButtonGap);
+        }
+    }
+
+    public void ResetQueue() {
+        foreach (ActionController ac in queuedActions) {
+            Destroy(ac.gameObject);
+        }
+        queuedActions.Clear();
     }
 
     /// <summary>
