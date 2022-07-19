@@ -17,12 +17,15 @@ public class GameController : MonoBehaviour
     public GameObject actionPrefab;
 
     public PlayerController playerController;
+    public DoorController doorController;
 
     // The field that holds all the Actions that are available in this level.
     public GameObject actionStore;
 
     // The field that the player can drag Actions to.
     public GameObject actionQueue;
+
+    public SpriteRenderer[] inventoryRenderers = new SpriteRenderer[3];
 
     // List of all actions. (Used mainly editor-side)
     public List<ActionScriptableObject> actions = new();
@@ -32,7 +35,51 @@ public class GameController : MonoBehaviour
     
 
     void Start() {
+        LoadLevel(0);
         GenerateAvailableActions(actions);
+    }
+
+    private void LoadNewLevel(int index) {
+        if (playerController != null) {
+            ResetInventory();
+        }
+        if (currentLevelController != null) {
+            RemoveCurrentLevel();
+        }
+        RemoveAllActions();
+        LoadLevel(index);
+    }
+
+    public void ResetLevel() {
+        ResetInventory();
+        RemoveCurrentLevel();
+        LoadLevel(currentLevelIndex);
+    }
+
+    private void RemoveCurrentLevel() {
+        Destroy(currentLevelController.gameObject);
+        currentLevelController = null;
+    }
+
+    private void LoadLevel(int index) {
+        GameObject go = Instantiate(levels[index]);
+        currentLevelController = go.GetComponent<LevelController>();
+        currentLevelController.SetConnections(this, out playerController, out doorController);
+    }
+
+    private void RemoveAllActions() {
+        ResetQueue();
+    }
+
+    private void ResetInventory() {
+        foreach (var r in inventoryRenderers) {
+            r.sprite = null;
+        }
+    }
+
+    public void WinLevel() {
+        currentLevelIndex++;
+        LoadNewLevel(currentLevelIndex);
     }
 
     /// <summary>

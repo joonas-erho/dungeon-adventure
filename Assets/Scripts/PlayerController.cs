@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public float timeBetweenActions = 0.5f;
     public float speed = 5f;
 
+    public GameController gameController;
     public BoxCollider2D leftCollider;
     public BoxCollider2D rightCollider;
     public BoxCollider2D topCollider;
@@ -19,8 +20,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveTargetLocation;
 
     [SerializeField] private List<ItemScriptableObject> itemsInInventory = new List<ItemScriptableObject>();
-
-    public SpriteRenderer[] inventoryRenderers = new SpriteRenderer[3];
 
     void Update() {
         // If we are supposed to be moving, move player towards target location.
@@ -73,6 +72,9 @@ public class PlayerController : MonoBehaviour
             case "useitem2":
                 UseItem(2);
                 break;
+            case "wait":
+                // Do nothing; wait for next cycle.
+                break;
             default:
                 // This should never happen in-game!
                 Debug.Log("Such action does not exist!");
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Monster") {
-            Destroy(this.gameObject);
+            gameController.ResetLevel();
         }
         else if (other.tag == "Goal") {
             Debug.Log("jee");
@@ -112,7 +114,7 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D other in collisions) {
             if (other.tag == "Item" && itemsInInventory.Count < 3) {
                 ItemScriptableObject item = other.gameObject.GetComponent<ItemController>().item;
-                inventoryRenderers[itemsInInventory.Count].sprite = item.sprite;
+                gameController.inventoryRenderers[itemsInInventory.Count].sprite = item.sprite;
                 itemsInInventory.Add(item);
                 Destroy(other.gameObject);
             }
@@ -132,7 +134,7 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D other in collisions) {
             if (other.tag == "Door" && itemsInInventory[index].itemName == "key") {
                 DoorController doorController = other.gameObject.GetComponent<DoorController>();
-                inventoryRenderers[index].sprite = null;
+                gameController.inventoryRenderers[index].sprite = null;
                 itemsInInventory[index] = null;
                 doorController.UseKey();
             }

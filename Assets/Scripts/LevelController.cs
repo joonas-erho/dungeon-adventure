@@ -12,4 +12,11 @@ public class LevelController : MonoBehaviour
 
     // Actions that can be used in this level.
     public List<ActionScriptableObject> actions = new();
+
+    public void SetConnections(GameController gc, out PlayerController pc, out DoorController dc) {
+        playerController.gameController = gc;
+        doorController.gameController = gc;
+        pc = playerController;
+        dc = doorController;
+    }
 }

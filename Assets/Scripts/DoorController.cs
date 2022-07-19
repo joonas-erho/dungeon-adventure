@@ -8,13 +8,15 @@ public class DoorController : MonoBehaviour
 
     public Sprite[] doorSprites;
 
+    public GameController gameController;
+
     public SpriteRenderer sr;
 
     public void UseKey() {
         amountOfKeysNeeded--;
         sr.sprite = doorSprites[amountOfKeysNeeded];
         if (amountOfKeysNeeded == 0) {
-            Debug.Log("You win this round!!!! Ootpa hyvä");
+            gameController.WinLevel();
         }
     }
 }

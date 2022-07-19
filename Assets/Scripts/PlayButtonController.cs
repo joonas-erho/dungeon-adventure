@@ -19,7 +19,7 @@ public class PlayButtonController : MonoBehaviour
             sr.sprite = sprites[1];
         }
         else {
-            gameController.StopExecute();
+            gameController.ResetLevel();
             sr.sprite = sprites[0];
         }
 
