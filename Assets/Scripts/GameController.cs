@@ -35,7 +35,7 @@ public class GameController : MonoBehaviour
     
 
     void Start() {
-        LoadLevel(0);
+        LoadLevel(currentLevelIndex);
         GenerateAvailableActions(actions);
     }
 

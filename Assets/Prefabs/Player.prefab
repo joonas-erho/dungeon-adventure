@@ -313,7 +313,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: e27aed80e28266840afc9301516278fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf5b84524e242f5469da84f44b22edd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -478,16 +478,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenActions: 0.5
   speed: 3
+  gameController: {fileID: 0}
   leftCollider: {fileID: 5535675101150244519}
   rightCollider: {fileID: 5535675100848171930}
   topCollider: {fileID: 5535675101402679685}
   bottomCollider: {fileID: 5535675100134825436}
   wallsCollider: {fileID: 0}
   itemsInInventory: []
-  inventoryRenderers:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!61 &5535675101502349399
 BoxCollider2D:
   m_ObjectHideFlags: 0
