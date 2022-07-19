@@ -8,6 +8,11 @@ public class GameController : MonoBehaviour
     private readonly float actionButtonGap = 0.8f;
     private readonly int amountOfActionsInRow = 11;
 
+    // Level management variables
+    public GameObject[] levels;
+    public int currentLevelIndex;
+    public LevelController currentLevelController;
+
     // Prefab for the Action boxes.
     public GameObject actionPrefab;
 
