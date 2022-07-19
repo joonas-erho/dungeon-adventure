@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D topCollider;
     public BoxCollider2D bottomCollider;
     public TilemapCollider2D wallsCollider;
+    
+    public AudioSource doorOpen;
+    public AudioSource keyClink;
+    public AudioSource footsteps;
 
     private bool isMoving = false;
     private Vector2 moveTargetLocation;
@@ -98,6 +102,8 @@ public class PlayerController : MonoBehaviour
 
         // Begin movement by enabling movement flag.
         isMoving = true;
+        footsteps.pitch = Random.Range(0.75f,1.25f);
+        footsteps.Play();
     }
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -117,6 +123,7 @@ public class PlayerController : MonoBehaviour
                 gameController.inventoryRenderers[itemsInInventory.Count].sprite = item.sprite;
                 itemsInInventory.Add(item);
                 Destroy(other.gameObject);
+                keyClink.Play();
             }
         }
     }
@@ -136,8 +143,16 @@ public class PlayerController : MonoBehaviour
                 DoorController doorController = other.gameObject.GetComponent<DoorController>();
                 gameController.inventoryRenderers[index].sprite = null;
                 itemsInInventory[index] = null;
-                doorController.UseKey();
+                if ( doorController.UseKey() == 0) {
+                    StartCoroutine(WinLevel());
+                }
             }
         }
+    }
+
+    private IEnumerator WinLevel() {
+        doorOpen.Play();
+        yield return new WaitForSeconds(1.25f);
+        gameController.WinLevel();
     }
 }

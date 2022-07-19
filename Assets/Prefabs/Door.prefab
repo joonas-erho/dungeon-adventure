@@ -130,4 +130,5 @@ MonoBehaviour:
   - {fileID: 1631051863, guid: 74e41d33528f6af4193f0b03d9f0717a, type: 3}
   - {fileID: -320190103, guid: 74e41d33528f6af4193f0b03d9f0717a, type: 3}
   - {fileID: -1353908426, guid: 74e41d33528f6af4193f0b03d9f0717a, type: 3}
+  gameController: {fileID: 0}
   sr: {fileID: 4012494033806618538}

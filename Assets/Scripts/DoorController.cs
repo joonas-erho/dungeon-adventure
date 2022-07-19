@@ -12,11 +12,9 @@ public class DoorController : MonoBehaviour
 
     public SpriteRenderer sr;
 
-    public void UseKey() {
+    public int UseKey() {
         amountOfKeysNeeded--;
         sr.sprite = doorSprites[amountOfKeysNeeded];
-        if (amountOfKeysNeeded == 0) {
-            gameController.WinLevel();
-        }
+        return amountOfKeysNeeded;
     }
 }
