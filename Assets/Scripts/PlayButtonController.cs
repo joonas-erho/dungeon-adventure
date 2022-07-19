@@ -25,4 +25,9 @@ public class PlayButtonController : MonoBehaviour
 
         isRunning = !isRunning;
     }
+
+    public void StopRunning() {
+        isRunning = false;
+        sr.sprite = sprites[0];
+    }
 }

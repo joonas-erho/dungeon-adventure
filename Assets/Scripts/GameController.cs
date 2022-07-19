@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     // Readonly values.
     private readonly float actionButtonGap = 0.8f;
     private readonly int amountOfActionsInRow = 11;
+    public float timeBetweenActions = 0.5f;
 
     // Level management variables
     public GameObject[] levels;
@@ -25,7 +26,10 @@ public class GameController : MonoBehaviour
     // The field that the player can drag Actions to.
     public GameObject actionQueue;
 
+    // These render the items while they are in the player's inventory.
     public SpriteRenderer[] inventoryRenderers = new SpriteRenderer[3];
+
+    public PlayButtonController playButtonController;
 
     // List of all actions. (Used mainly editor-side)
     public List<ActionScriptableObject> actions = new();
@@ -33,6 +37,7 @@ public class GameController : MonoBehaviour
     // List of actions in the queue.
     private List<ActionController> queuedActions = new();
     
+    public bool isDead = false;
 
     void Start() {
         LoadLevel(currentLevelIndex);
@@ -51,6 +56,7 @@ public class GameController : MonoBehaviour
     }
 
     public void ResetLevel() {
+        
         ResetInventory();
         RemoveCurrentLevel();
         LoadLevel(currentLevelIndex);
@@ -62,6 +68,7 @@ public class GameController : MonoBehaviour
     }
 
     private void LoadLevel(int index) {
+        playButtonController.StopRunning();
         GameObject go = Instantiate(levels[index]);
         currentLevelController = go.GetComponent<LevelController>();
         currentLevelController.SetConnections(this, out playerController, out doorController);
@@ -159,10 +166,34 @@ public class GameController : MonoBehaviour
         }
 
         // Since ExecuteActions is a coroutine, we have to use StartCoroutine here.
-        StartCoroutine(playerController.ExecuteActions(words));
+        StartCoroutine(ActionLoop());
     }
 
-    public void StopExecute() {
-        
+    private IEnumerator ActionLoop() {
+        List<string> words = new List<string>();
+        foreach (var actionController in queuedActions) {
+            words.Add(actionController.GetWord());
+        }
+
+        for (int i = 0; i < words.Count; i++) {
+            playerController.Execute(words[i]);
+            foreach (var monster in currentLevelController.monsterControllers) {
+                monster.Execute(monster.commands[i % monster.commands.Count]);
+            }
+            if (isDead) {
+                break;
+            }
+            yield return new WaitForSeconds(timeBetweenActions);
+
+        }
+
+        if (isDead) {
+            ResetLevel();
+            isDead = false;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(2.5f);
+        ResetLevel();
     }
 }

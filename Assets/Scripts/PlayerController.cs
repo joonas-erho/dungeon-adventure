@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public BoxCollider2D topCollider;
     public BoxCollider2D bottomCollider;
     public TilemapCollider2D wallsCollider;
+    public SpriteRenderer sr;
     
     public AudioSource doorOpen;
     public AudioSource keyClink;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
     /// Performs the given action (string). Logs errors, but this should never happen at runtime.
     /// </summary>
     /// <param name="action">String that corresponds to an action.</param>
-    private void Execute(string action) {
+    public void Execute(string action) {
         switch(action) {
             case "moveleft":
                 Move(-1,0,leftCollider);
@@ -108,10 +109,10 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Monster") {
-            gameController.ResetLevel();
-        }
-        else if (other.tag == "Goal") {
-            Debug.Log("jee");
+            gameController.isDead = true;
+
+            // Temporary since there is no death animation implemented yet.
+            sr.sprite = null;
         }
     }
 
@@ -143,7 +144,7 @@ public class PlayerController : MonoBehaviour
                 DoorController doorController = other.gameObject.GetComponent<DoorController>();
                 gameController.inventoryRenderers[index].sprite = null;
                 itemsInInventory[index] = null;
-                if ( doorController.UseKey() == 0) {
+                if (doorController.UseKey() == 0) {
                     StartCoroutine(WinLevel());
                 }
             }

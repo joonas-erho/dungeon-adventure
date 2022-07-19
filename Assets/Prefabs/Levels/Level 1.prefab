@@ -737,7 +737,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelId: 0
   playerController: {fileID: 7324517983374170860}
-  monsterControllers: []
+  monsterControllers:
+  - {fileID: 7324517983377810765}
   itemControllers: []
   doorController: {fileID: 7324517985016472638}
   actions:
@@ -2075,6 +2076,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[0]
+      value: moveup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[1]
+      value: moveup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[2]
+      value: movedown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[3]
+      value: movedown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[4]
+      value: movedown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[5]
+      value: movedown
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[6]
+      value: moveup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+      propertyPath: commands.Array.data[7]
+      value: moveup
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e475163096899b54fa0b0125431bb111, type: 3}
 --- !u!4 &7324517983377810764 stripped
@@ -2082,3 +2119,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4487338726587509974, guid: e475163096899b54fa0b0125431bb111, type: 3}
   m_PrefabInstance: {fileID: 6621365127606946202}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7324517983377810765 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
+  m_PrefabInstance: {fileID: 6621365127606946202}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe17869268e49014da6774a694d5af48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

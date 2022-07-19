@@ -972,6 +972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa361353284616a49bc8536c2286e98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenActions: 0.5
   levels:
   - {fileID: 7324517983719040175, guid: 09a3a1d76ac74af4dbd96c533dd6e566, type: 3}
   - {fileID: 7324517983719040175, guid: 044eaf88f1976af4c8ece40a1f2c9aad, type: 3}
@@ -987,6 +988,7 @@ MonoBehaviour:
   - {fileID: 1151578285}
   - {fileID: 760427110}
   - {fileID: 474004280}
+  playButtonController: {fileID: 1235262}
   actions:
   - {fileID: 11400000, guid: 0864fd95598f8f44892ee41dc690daa9, type: 2}
   - {fileID: 11400000, guid: f74e43e3ddc0b7e41bbb2a68a647b379, type: 2}
@@ -997,6 +999,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e424b41c87dda1b4eba80b0029db1edd, type: 2}
   - {fileID: 11400000, guid: a2ec771ad399bc343a3640ee028ffb17, type: 2}
   - {fileID: 11400000, guid: c21815670ab983148ac5b469f9abbea0, type: 2}
+  isDead: 0
 --- !u!4 &1092834976
 Transform:
   m_ObjectHideFlags: 0

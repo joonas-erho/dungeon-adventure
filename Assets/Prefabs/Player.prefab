@@ -487,6 +487,7 @@ MonoBehaviour:
   topCollider: {fileID: 5535675101402679685}
   bottomCollider: {fileID: 5535675100134825436}
   wallsCollider: {fileID: 0}
+  sr: {fileID: 5535675101160743879}
   doorOpen: {fileID: 4905622996450512932}
   keyClink: {fileID: 4850121615257413742}
   footsteps: {fileID: 7524281835230738188}
@@ -515,7 +516,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!82 &4905622996450512932
 AudioSource:
