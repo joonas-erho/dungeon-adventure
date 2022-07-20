@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     // Readonly values.
-    private readonly float actionButtonGap = 0.8f;
-    private readonly int amountOfActionsInRow = 11;
+    private readonly float actionButtonGap = 0.89f;
+    private readonly int amountOfActionsInRow = 10;
     public float timeBetweenActions = 0.5f;
 
     // Level management variables
@@ -56,7 +56,6 @@ public class GameController : MonoBehaviour
     }
 
     public void ResetLevel() {
-        
         ResetInventory();
         RemoveCurrentLevel();
         LoadLevel(currentLevelIndex);
@@ -72,6 +71,7 @@ public class GameController : MonoBehaviour
         GameObject go = Instantiate(levels[index]);
         currentLevelController = go.GetComponent<LevelController>();
         currentLevelController.SetConnections(this, out playerController, out doorController);
+        isDead = false;
     }
 
     private void RemoveAllActions() {
@@ -160,11 +160,6 @@ public class GameController : MonoBehaviour
     /// Transforms the current queue of actions to strings and makes the player execute them.
     /// </summary>
     public void Execute() {
-        List<string> words = new List<string>();
-        foreach (var actionController in queuedActions) {
-            words.Add(actionController.GetWord());
-        }
-
         // Since ExecuteActions is a coroutine, we have to use StartCoroutine here.
         StartCoroutine(ActionLoop());
     }
@@ -177,23 +172,24 @@ public class GameController : MonoBehaviour
 
         for (int i = 0; i < words.Count; i++) {
             playerController.Execute(words[i]);
+            queuedActions[i].MakeActive(true);
             foreach (var monster in currentLevelController.monsterControllers) {
                 monster.Execute(monster.commands[i % monster.commands.Count]);
             }
             if (isDead) {
+                queuedActions[i].MakeActive(false);
                 break;
             }
             yield return new WaitForSeconds(timeBetweenActions);
-
+            queuedActions[i].MakeActive(false);
         }
 
         if (isDead) {
             ResetLevel();
-            isDead = false;
             yield return null;
         }
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         ResetLevel();
     }
 }

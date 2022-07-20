@@ -15,6 +15,7 @@ public class ActionController : MonoBehaviour
     // Sprite renderers of the action base and the icon, respectively.
     public SpriteRenderer sr;
     public SpriteRenderer iconSr;
+    public GameObject border;
 
     private bool isQueued = false;
 
@@ -44,5 +45,9 @@ public class ActionController : MonoBehaviour
         else {
             gameController.RemoveActionFromQueue(this);
         }
+    }
+    
+    public void MakeActive(bool b) {
+        border.gameObject.SetActive(b);
     }
 }
