@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private Vector2 moveTargetLocation;
 
-    [SerializeField] private List<ItemScriptableObject> itemsInInventory = new List<ItemScriptableObject>();
+    private ItemScriptableObject[] itemsInInventory = new ItemScriptableObject[3];
 
     void Update() {
         // If we are supposed to be moving, move player towards target location.
@@ -119,21 +119,22 @@ public class PlayerController : MonoBehaviour
     private void PickupItem() {
         Collider2D[] collisions = Physics2D.OverlapCircleAll(this.transform.position, 0.1f);
         foreach (Collider2D other in collisions) {
-            if (other.tag == "Item" && itemsInInventory.Count < 3) {
+            if (other.tag == "Item") {
                 ItemScriptableObject item = other.gameObject.GetComponent<ItemController>().item;
-                gameController.inventoryRenderers[itemsInInventory.Count].sprite = item.sprite;
-                itemsInInventory.Add(item);
-                Destroy(other.gameObject);
-                keyClink.Play();
+                for (int i = 0; i < itemsInInventory.Length; i++) {
+                    if (itemsInInventory[i] == null) {
+                        itemsInInventory[i] = item;
+                        gameController.inventoryRenderers[i].sprite = item.sprite;
+                        Destroy(other.gameObject);
+                        keyClink.Play();
+                        break;
+                    }
+                } 
             }
         }
     }
     
     private void UseItem(int index) {
-        if (itemsInInventory.Count <= index) {
-            return;
-        }
-
         if (itemsInInventory[index] == null) {
             return;
         }

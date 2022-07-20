@@ -2070,7 +2070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4487338726587509974, guid: e475163096899b54fa0b0125431bb111, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4487338726587509974, guid: e475163096899b54fa0b0125431bb111, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2110,19 +2110,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
       propertyPath: commands.Array.data[0]
-      value: moveup
+      value: movedown
       objectReference: {fileID: 0}
     - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
       propertyPath: commands.Array.data[1]
-      value: moveup
+      value: movedown
       objectReference: {fileID: 0}
     - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
       propertyPath: commands.Array.data[2]
-      value: movedown
+      value: moveup
       objectReference: {fileID: 0}
     - target: {fileID: 4487338726587509975, guid: e475163096899b54fa0b0125431bb111, type: 3}
       propertyPath: commands.Array.data[3]
-      value: movedown
+      value: moveup
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e475163096899b54fa0b0125431bb111, type: 3}
