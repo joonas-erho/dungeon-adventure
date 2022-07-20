@@ -127,6 +127,10 @@ public class GameController : MonoBehaviour
     /// </summary>
     /// <param name="action">The scriptable object to create the game object from.</param>
     public void AddActionToQueue(ActionScriptableObject action) {
+        if (queuedActions.Count >= 50) {
+            return;
+        }
+        
         GameObject go =
             CreateAction(action,
                          actionQueue,
