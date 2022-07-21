@@ -491,7 +491,6 @@ MonoBehaviour:
   doorOpen: {fileID: 4905622996450512932}
   keyClink: {fileID: 4850121615257413742}
   footsteps: {fileID: 7524281835230738188}
-  itemsInInventory: []
 --- !u!61 &5535675101502349399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -722,7 +721,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 31e6135f9d1475f49bb9607388c19982, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0

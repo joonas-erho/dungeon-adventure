@@ -998,7 +998,7 @@ MonoBehaviour:
   - {fileID: 7324517983719040175, guid: 09a3a1d76ac74af4dbd96c533dd6e566, type: 3}
   - {fileID: 7324517983719040175, guid: 044eaf88f1976af4c8ece40a1f2c9aad, type: 3}
   - {fileID: 7324517983719040175, guid: 2c6a2d730993f2648851d57d18ed4fb7, type: 3}
-  currentLevelIndex: 0
+  currentLevelIndex: 1
   currentLevelController: {fileID: 0}
   actionPrefab: {fileID: 4566816660539465745, guid: 0641e0f03de34ec4792c5464461be096, type: 3}
   playerController: {fileID: 0}
