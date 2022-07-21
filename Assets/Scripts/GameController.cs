@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
     // Readonly values.
     private readonly float actionButtonGap = 0.89f;
     private readonly int amountOfActionsInRow = 10;
+
+    // The time that the system waits until it executes the next action.
     public float timeBetweenActions = 0.5f;
 
     // Level management variables
