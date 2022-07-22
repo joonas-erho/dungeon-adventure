@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     // Readonly values.
-    private readonly float actionButtonGap = 0.89f;
-    private readonly int amountOfActionsInRow = 10;
+    public static readonly float actionButtonGap = 0.875f;
+    public static readonly int amountOfActionsInRow = 10;
 
     // The time that the system waits until it executes the next action.
     public float timeBetweenActions = 0.5f;
@@ -22,11 +22,9 @@ public class GameController : MonoBehaviour
     public PlayerController playerController;
     public DoorController doorController;
 
-    // The field that holds all the Actions that are available in this level.
-    public GameObject actionStore;
-
-    // The field that the player can drag Actions to.
-    public GameObject actionQueue;
+    // The controllers for the action zones.
+    public StoreController storeController;
+    public QueueController queueController;
 
     // These render the items while they are in the player's inventory.
     public SpriteRenderer[] inventoryRenderers = new SpriteRenderer[3];
@@ -35,15 +33,11 @@ public class GameController : MonoBehaviour
 
     // List of all actions. (Used mainly editor-side)
     public List<ActionScriptableObject> actions = new();
-
-    // List of actions in the queue.
-    private List<ActionController> queuedActions = new();
     
     public bool isDead = false;
 
     void Start() {
-        LoadLevel(currentLevelIndex);
-        GenerateAvailableActions(actions);
+        LoadNewLevel(currentLevelIndex);
     }
 
     private void LoadNewLevel(int index) {
@@ -53,8 +47,9 @@ public class GameController : MonoBehaviour
         if (currentLevelController != null) {
             RemoveCurrentLevel();
         }
-        RemoveAllActions();
+        ResetQueue();
         LoadLevel(index);
+        storeController.GenerateAvailableActions(currentLevelController.actions, actionButtonGap, amountOfActionsInRow, this, actionPrefab);
     }
 
     public void ResetLevel() {
@@ -76,10 +71,6 @@ public class GameController : MonoBehaviour
         isDead = false;
     }
 
-    private void RemoveAllActions() {
-        ResetQueue();
-    }
-
     private void ResetInventory() {
         foreach (var r in inventoryRenderers) {
             r.sprite = null;
@@ -92,74 +83,23 @@ public class GameController : MonoBehaviour
     }
 
     /// <summary>
-    /// Generates available actions and places them as children to the "Action Store" gameobject.
-    /// </summary>
-    /// <param name="list">List of actions as premade scriptable objects. (See Assets/Objects-folder.)</param>
-    void GenerateAvailableActions(List<ActionScriptableObject> list) {
-        for (int i = 0; i < list.Count; i++) {
-            CreateAction(list[i], actionStore, new Vector2((i % amountOfActionsInRow) * actionButtonGap, (i / amountOfActionsInRow) * -actionButtonGap), false);
-        }
-    }
-
-    /// <summary>
-    /// Creates a game object that represents an Action.
-    /// </summary>
-    /// <param name="action">The scriptable object that dictates the action's look and functionality.</param>
-    /// <param name="parent">The game object that the created action will be a child to.</param>
-    /// <param name="position">The position of the action respective to its parent's position.</param>
-    /// <returns>The created GameObject.</returns>
-    private GameObject CreateAction(ActionScriptableObject action, GameObject parent, Vector2 position, bool isQueued) {
-        // Create game object and add as child to action store in correct position.
-        GameObject go = Instantiate(actionPrefab);
-        go.transform.SetParent(parent.transform);
-        go.transform.localPosition = position;
-
-        // Set correct name (visible in editor only).
-        go.name = "Action (" + action.actionName + ")";
-        
-        // Set the object of the created prefab as the one given in the list.
-        // See ActionController for more information.
-        go.GetComponent<ActionController>().SetValues(action, this, isQueued);
-
-        return go;
-    }
-
-    /// <summary>
     /// Adds an action to the queue by creating a new action and adding it to the queued actions list.
     /// </summary>
     /// <param name="action">The scriptable object to create the game object from.</param>
     public void AddActionToQueue(ActionScriptableObject action) {
-        if (queuedActions.Count >= 50) {
-            return;
-        }
-        
-        GameObject go =
-            CreateAction(action,
-                         actionQueue,
-                         new Vector2((queuedActions.Count % amountOfActionsInRow) * actionButtonGap, (queuedActions.Count / amountOfActionsInRow) * -actionButtonGap),
-                         true);
-        queuedActions.Add(go.GetComponent<ActionController>());
+        queueController.AddActionToQueue(action, this, actionPrefab);
     }
 
     public void RemoveActionFromQueue(ActionController ac) {
-        int index = queuedActions.FindIndex(i => i == ac);
-        queuedActions.RemoveAt(index);
-        Destroy(ac.gameObject);
-        RefreshQueue();
+        queueController.RemoveActionFromQueue(ac);
     }
 
     private void RefreshQueue() {
-        for (int i = 0; i < queuedActions.Count; i++) {
-            GameObject go = queuedActions[i].gameObject;
-            go.transform.localPosition = new Vector2((i % amountOfActionsInRow) * actionButtonGap, (i / amountOfActionsInRow) * -actionButtonGap);
-        }
+        queueController.RefreshQueue();
     }
 
     public void ResetQueue() {
-        foreach (ActionController ac in queuedActions) {
-            Destroy(ac.gameObject);
-        }
-        queuedActions.Clear();
+        queueController.ResetQueue();
     }
 
     /// <summary>
@@ -171,6 +111,7 @@ public class GameController : MonoBehaviour
     }
 
     private IEnumerator ActionLoop() {
+        List<ActionController> queuedActions = queueController.GetActions();
         List<string> words = new List<string>();
         foreach (var actionController in queuedActions) {
             words.Add(actionController.GetWord());
