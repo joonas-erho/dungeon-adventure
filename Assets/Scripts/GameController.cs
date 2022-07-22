@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameController : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class GameController : MonoBehaviour
     
     public bool isDead = false;
 
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI pointsText;
+    public int points;
+
     void Start() {
         LoadNewLevel(currentLevelIndex);
     }
@@ -52,6 +57,7 @@ public class GameController : MonoBehaviour
         ResetQueue();
         LoadLevel(index);
         storeController.GenerateAvailableActions(currentLevelController.actions, actionButtonGap, amountOfActionsInRow, this, actionPrefab);
+        ShowLevelText(index);
     }
 
     public void ResetLevel() {
@@ -81,7 +87,17 @@ public class GameController : MonoBehaviour
 
     public void WinLevel() {
         currentLevelIndex++;
+        AddPoints(100);
         LoadNewLevel(currentLevelIndex);
+    }
+
+    public void ShowLevelText(int index) {
+        levelText.text = "Level " + ++index;
+    }
+
+    public void AddPoints(int p) {
+        points += p;
+        pointsText.text = "Points " + points;
     }
 
     /// <summary>
