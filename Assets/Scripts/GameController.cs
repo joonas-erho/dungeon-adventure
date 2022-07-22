@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Readonly values.
+    // The gap between actions when they are placed into store or queue.
     public static readonly float actionButtonGap = 0.875f;
+
+    // The amount of actions that fix on a horizontal row.
     public static readonly int amountOfActionsInRow = 10;
 
     // The time that the system waits until it executes the next action.
