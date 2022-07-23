@@ -26,6 +26,17 @@ public class PlayerController : MonoBehaviour
 
     private ItemScriptableObject[] itemsInInventory = new ItemScriptableObject[3];
 
+    private int treasuresCollected;
+    private int monstersKilled;
+
+    public int GetTreasuresCollected() {
+        return treasuresCollected;
+    }
+
+    public int GetMonstersKilled() {
+        return monstersKilled;
+    }
+
     void Update() {
         // If we are supposed to be moving, move player towards target location.
         // Step is the max distance it can move per frame, controlled by the "speed" variable.
@@ -127,6 +138,10 @@ public class PlayerController : MonoBehaviour
                         gameController.inventoryRenderers[i].sprite = item.sprite;
                         Destroy(other.gameObject);
                         keyClink.Play();
+
+                        if (item.itemName == "gem") {
+                            treasuresCollected++;
+                        }
                         break;
                     }
                 } 

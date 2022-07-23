@@ -14,6 +14,11 @@ public class GameController : MonoBehaviour
     // The time that the system waits until it executes the next action.
     public float timeBetweenActions = 0.5f;
 
+    private int maxActionScore = 200;
+    private int actionScoreLoss = 20;
+    private int treasureValue = 50;
+    private int monsterValue = 100;
+
     // Level management variables
     public GameObject[] levels;
     public int currentLevelIndex;
@@ -28,6 +33,7 @@ public class GameController : MonoBehaviour
     // The controllers for the action zones.
     public StoreController storeController;
     public QueueController queueController;
+    public VictoryScreenController victoryScreenController;
 
     // These render the items while they are in the player's inventory.
     public SpriteRenderer[] inventoryRenderers = new SpriteRenderer[3];
@@ -40,7 +46,6 @@ public class GameController : MonoBehaviour
     public bool isDead = false;
 
     public TextMeshProUGUI levelText;
-    public TextMeshProUGUI pointsText;
     public int points;
 
     void Start() {
@@ -86,18 +91,14 @@ public class GameController : MonoBehaviour
     }
 
     public void WinLevel() {
-        currentLevelIndex++;
-        AddPoints(100);
-        LoadNewLevel(currentLevelIndex);
+        // currentLevelIndex++;
+        // LoadNewLevel(currentLevelIndex);
+        victoryScreenController.gameObject.SetActive(true);
+        victoryScreenController.DisplayScore(CalculateActionScore(), CalculateTreasureScore(), CalculateMonsterScore());
     }
 
     public void ShowLevelText(int index) {
         levelText.text = "Level " + ++index;
-    }
-
-    public void AddPoints(int p) {
-        points += p;
-        pointsText.text = "Points " + points;
     }
 
     /// <summary>
@@ -156,5 +157,20 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
         ResetLevel();
+    }
+
+    private int CalculateActionScore() {
+        int amountOfActions = queueController.GetActionCount();
+        int maxActions = currentLevelController.maxActionsForMaxPoints;
+        int score = maxActionScore - (amountOfActions - maxActions) * actionScoreLoss;
+        return Mathf.Max(0, score);
+    }
+
+    private int CalculateTreasureScore() {
+        return playerController.GetTreasuresCollected() * treasureValue;
+    }
+
+    private int CalculateMonsterScore() {
+        return playerController.GetMonstersKilled() * monsterValue;
     }
 }

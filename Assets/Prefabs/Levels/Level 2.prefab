@@ -1166,6 +1166,7 @@ MonoBehaviour:
   - {fileID: 9077021522703584335}
   itemControllers: []
   doorController: {fileID: 7324517985016472638}
+  maxActionsForMaxPoints: 43
   actions:
   - {fileID: 11400000, guid: 120198d2adc869e48959dcc403f81440, type: 2}
   - {fileID: 11400000, guid: 0864fd95598f8f44892ee41dc690daa9, type: 2}

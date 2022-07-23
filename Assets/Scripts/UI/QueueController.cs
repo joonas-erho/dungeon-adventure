@@ -7,6 +7,10 @@ public class QueueController : ActionArea
     // List of actions in the queue.
     private List<ActionController> queuedActions = new();
 
+    public int GetActionCount() {
+        return queuedActions.Count;
+    }
+
     public List<ActionController> GetActions() {
         return queuedActions;
     }

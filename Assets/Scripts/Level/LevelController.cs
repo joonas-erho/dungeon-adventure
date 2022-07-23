@@ -16,6 +16,7 @@ public class LevelController : MonoBehaviour
     public MonsterController[] monsterControllers;
     public ItemController[] itemControllers;
     public DoorController doorController;
+    public int maxActionsForMaxPoints;
 
     // Actions that can be used in this level.
     public List<ActionScriptableObject> actions = new();
