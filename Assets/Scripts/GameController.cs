@@ -163,7 +163,7 @@ public class GameController : MonoBehaviour
         int amountOfActions = queueController.GetActionCount();
         int maxActions = currentLevelController.maxActionsForMaxPoints;
         int score = maxActionScore - (amountOfActions - maxActions) * actionScoreLoss;
-        return Mathf.Max(0, score);
+        return Mathf.Max(0, score) + 100;
     }
 
     private int CalculateTreasureScore() {
