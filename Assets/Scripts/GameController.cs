@@ -66,6 +66,7 @@ public class GameController : MonoBehaviour
     }
 
     public void ResetLevel() {
+        victoryScreenController.gameObject.SetActive(false);
         ResetInventory();
         RemoveCurrentLevel();
         LoadLevel(currentLevelIndex);
@@ -90,9 +91,12 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void GoToNextLevel() {
+        currentLevelIndex++;
+        LoadNewLevel(currentLevelIndex);
+    }
+
     public void WinLevel() {
-        // currentLevelIndex++;
-        // LoadNewLevel(currentLevelIndex);
         victoryScreenController.gameObject.SetActive(true);
         victoryScreenController.DisplayScore(CalculateActionScore(), CalculateTreasureScore(), CalculateMonsterScore());
     }
