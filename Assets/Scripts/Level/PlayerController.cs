@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Monster") {
-            gameController.isDead = true;
+            gameController.queueShouldBeStopped = true;
 
             // Temporary since there is no death animation implemented yet.
             sr.sprite = null;

@@ -19,7 +19,7 @@ public class PlayButtonController : MonoBehaviour
             sr.sprite = sprites[1];
         }
         else {
-            gameController.isDead = true;
+            gameController.queueShouldBeStopped = true;
             sr.sprite = sprites[0];
         }
 

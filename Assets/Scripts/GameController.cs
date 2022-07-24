@@ -43,7 +43,8 @@ public class GameController : MonoBehaviour
     // List of all actions. (Used mainly editor-side)
     public List<ActionScriptableObject> actions = new();
     
-    public bool isDead = false;
+    public bool queueShouldBeStopped = false;
+    public bool levelIsWon = false;
 
     public TextMeshProUGUI levelText;
     public int points;
@@ -82,7 +83,8 @@ public class GameController : MonoBehaviour
         GameObject go = Instantiate(levels[index]);
         currentLevelController = go.GetComponent<LevelController>();
         currentLevelController.SetConnections(this, out playerController, out doorController);
-        isDead = false;
+        queueShouldBeStopped = false;
+        levelIsWon = false;
     }
 
     private void ResetInventory() {
@@ -93,10 +95,13 @@ public class GameController : MonoBehaviour
 
     public void GoToNextLevel() {
         currentLevelIndex++;
+        victoryScreenController.gameObject.SetActive(false);
         LoadNewLevel(currentLevelIndex);
     }
 
     public void WinLevel() {
+        queueShouldBeStopped = true;
+        levelIsWon = true;
         victoryScreenController.gameObject.SetActive(true);
         victoryScreenController.DisplayScore(CalculateActionScore(), CalculateTreasureScore(), CalculateMonsterScore());
     }
@@ -146,7 +151,7 @@ public class GameController : MonoBehaviour
             foreach (var monster in currentLevelController.monsterControllers) {
                 monster.Execute(monster.commands[i % monster.commands.Count]);
             }
-            if (isDead) {
+            if (queueShouldBeStopped) {
                 queuedActions[i].MakeActive(false);
                 break;
             }
@@ -154,13 +159,11 @@ public class GameController : MonoBehaviour
             queuedActions[i].MakeActive(false);
         }
 
-        if (isDead) {
+        yield return new WaitForSeconds(1f);
+        
+        if (!levelIsWon) {
             ResetLevel();
-            yield return null;
         }
-
-        yield return new WaitForSeconds(2f);
-        ResetLevel();
     }
 
     private int CalculateActionScore() {
