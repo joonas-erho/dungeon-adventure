@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     // Values that are only edited in editor.
     public float timeBetweenActions = 0.5f;
     public float speed = 5f;
+    private float swingTime = 0.35f;
 
     public GameController gameController;
     public BoxCollider2D leftCollider;
@@ -20,11 +21,17 @@ public class PlayerController : MonoBehaviour
     public AudioSource doorOpen;
     public AudioSource keyClink;
     public AudioSource footsteps;
+    public AudioSource swordPickup;
+
+    public Sprite spriteWithSword;
+    public GameObject swingAnimPrefab;
 
     private bool isMoving = false;
     private Vector2 moveTargetLocation;
 
     private ItemScriptableObject[] itemsInInventory = new ItemScriptableObject[3];
+
+    private bool hasSword = false;
 
     private int treasuresCollected;
     private int monstersKilled;
@@ -91,6 +98,18 @@ public class PlayerController : MonoBehaviour
             case "wait":
                 // Do nothing; wait for next cycle.
                 break;
+            case "swingleft":
+                Swing(-0.4f, 0, 180, leftCollider);
+                break;
+            case "swingright":
+                Swing(0.4f, 0, 0, rightCollider);
+                break;
+            case "swingup":
+                Swing(0, 0.5f, 90, topCollider);
+                break;
+            case "swingdown":
+                Swing(0, -0.3f, -90, bottomCollider);
+                break;
             default:
                 // This should never happen in-game!
                 Debug.Log("Such action does not exist!");
@@ -132,6 +151,16 @@ public class PlayerController : MonoBehaviour
         foreach (Collider2D other in collisions) {
             if (other.tag == "Item") {
                 ItemScriptableObject item = other.gameObject.GetComponent<ItemController>().item;
+
+                if (item.itemName == "sword") {
+                    gameController.ToggleSwordVisibility(true);
+                    hasSword = true;
+                    swordPickup.Play();
+                    Destroy(other.gameObject);
+                    sr.sprite = spriteWithSword;
+                    return;
+                }
+
                 for (int i = 0; i < itemsInInventory.Length; i++) {
                     if (itemsInInventory[i] == null) {
                         itemsInInventory[i] = item;
@@ -163,6 +192,26 @@ public class PlayerController : MonoBehaviour
                 if (doorController.UseKey() == 0) {
                     StartCoroutine(WinLevel());
                 }
+            }
+        }
+    }
+
+    private void Swing(float x, float y, int angle, BoxCollider2D col) {
+        if (!hasSword) {
+            return;
+        }
+
+        Vector2 posOfSwing = this.transform.position;
+        posOfSwing.x += x;
+        posOfSwing.y += y;
+        GameObject go = Instantiate(swingAnimPrefab, posOfSwing, Quaternion.Euler(new Vector3(0, 0, angle)));
+        Destroy(go, swingTime);
+
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(col.gameObject.transform.position, 0.1f);
+        foreach (Collider2D other in collisions) {
+            if (other.tag == "Monster") {
+                Destroy(other.gameObject, 0.15f);
+                monstersKilled++;
             }
         }
     }

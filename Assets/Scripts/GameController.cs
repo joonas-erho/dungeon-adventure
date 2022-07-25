@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
 
     // These render the items while they are in the player's inventory.
     public SpriteRenderer[] inventoryRenderers = new SpriteRenderer[3];
+    public GameObject swordRenderer;
 
     public PlayButtonController playButtonController;
 
@@ -89,6 +90,7 @@ public class GameController : MonoBehaviour
     }
 
     private void ResetInventory() {
+        ToggleSwordVisibility(false);
         foreach (var r in inventoryRenderers) {
             r.sprite = null;
         }
@@ -180,5 +182,9 @@ public class GameController : MonoBehaviour
 
     private int CalculateMonsterScore() {
         return playerController.GetMonstersKilled() * monsterValue;
+    }
+
+    public void ToggleSwordVisibility(bool b) {
+        swordRenderer.SetActive(b);
     }
 }

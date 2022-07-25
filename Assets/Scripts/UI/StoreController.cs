@@ -26,7 +26,7 @@ public class StoreController : ActionArea
                 prefab,
                 list[i],
                 this.gameObject,
-                new Vector2((i % amountOfActionsInRow) * actionButtonGap, (i / amountOfActionsInRow) * -actionButtonGap),
+                new Vector2(i * actionButtonGap, 0),
                 false);
             
             actionsInStore.Add(go);
