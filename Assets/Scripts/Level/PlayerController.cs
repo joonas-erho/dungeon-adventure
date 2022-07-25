@@ -219,7 +219,7 @@ public class PlayerController : MonoBehaviour
         Collider2D[] collisions = Physics2D.OverlapCircleAll(col.gameObject.transform.position, 0.1f);
         foreach (Collider2D other in collisions) {
             if (other.tag == "Monster") {
-                Destroy(other.gameObject, 0.15f);
+                gameController.DestroyMonster(other.gameObject);
                 monstersKilled++;
                 swordHit.Play();
             }

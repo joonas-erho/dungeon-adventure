@@ -1247,7 +1247,7 @@ MonoBehaviour:
   - {fileID: 4035630425442808116}
   itemControllers: []
   doorController: {fileID: 7324517985016472638}
-  maxActionsForMaxPoints: 4
+  maxActionsForMaxPoints: 7
   actions:
   - {fileID: 11400000, guid: 120198d2adc869e48959dcc403f81440, type: 2}
   - {fileID: 11400000, guid: 0864fd95598f8f44892ee41dc690daa9, type: 2}
@@ -2260,7 +2260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5535675101502349392, guid: 3e68963ba63cd0c40a113ea35793b632, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.25
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 5535675101502349392, guid: 3e68963ba63cd0c40a113ea35793b632, type: 3}
       propertyPath: m_LocalPosition.z

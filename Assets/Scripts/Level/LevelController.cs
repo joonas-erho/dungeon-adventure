@@ -13,7 +13,7 @@ public class LevelController : MonoBehaviour
 
     // References to the objects inside of this level. Manually set in the Unity Editor.
     public PlayerController playerController;
-    public MonsterController[] monsterControllers;
+    public List<MonsterController> monsterControllers;
     public ItemController[] itemControllers;
     public DoorController doorController;
     public int maxActionsForMaxPoints;

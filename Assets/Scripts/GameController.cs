@@ -187,4 +187,10 @@ public class GameController : MonoBehaviour
     public void ToggleSwordVisibility(bool b) {
         swordRenderer.SetActive(b);
     }
+
+    public void DestroyMonster(GameObject monster) {
+        MonsterController mc = monster.GetComponent<MonsterController>();
+        currentLevelController.monsterControllers.Remove(mc);
+        Destroy(monster, 0.15f);
+    }
 }

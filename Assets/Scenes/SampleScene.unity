@@ -2124,7 +2124,12 @@ MonoBehaviour:
   - {fileID: 7324517983719040175, guid: b569aac41dd9de144a597b6723dfde71, type: 3}
   - {fileID: 7324517983719040175, guid: af018d405cf496542ad19ca278b174b3, type: 3}
   - {fileID: 7324517983719040175, guid: a04a418051980c14cbdc18a73c79a3f7, type: 3}
-  currentLevelIndex: 4
+  - {fileID: 7324517983719040175, guid: 9d2d1b4019eb2ca43ab5033597fd301f, type: 3}
+  - {fileID: 7324517983719040175, guid: 1d2da1b716b24ce4c9d05e3862291137, type: 3}
+  - {fileID: 7324517983719040175, guid: 90e450f40808a8e40aebbf345a7a818f, type: 3}
+  - {fileID: 7324517983719040175, guid: 3a38c72afd42a6d4c8814e064b0c1880, type: 3}
+  - {fileID: 7324517983719040175, guid: fade17f7357199d4793a1a9dc7dfe209, type: 3}
+  currentLevelIndex: 9
   currentLevelController: {fileID: 0}
   actionPrefab: {fileID: 4566816660539465745, guid: 0641e0f03de34ec4792c5464461be096, type: 3}
   playerController: {fileID: 0}
