@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     // The time that the system waits until it executes the next action.
     public float timeBetweenActions = 0.5f;
 
+    private int scoreFromLevelCompetion = 50;
     private int maxActionScore = 200;
     private int actionScoreLoss = 20;
     private int treasureValue = 50;
@@ -170,7 +171,7 @@ public class GameController : MonoBehaviour
         int amountOfActions = queueController.GetActionCount();
         int maxActions = currentLevelController.maxActionsForMaxPoints;
         int score = maxActionScore - (amountOfActions - maxActions) * actionScoreLoss;
-        return Mathf.Max(0, score) + 100;
+        return Mathf.Clamp(score, 0, maxActionScore) + scoreFromLevelCompetion;
     }
 
     private int CalculateTreasureScore() {
