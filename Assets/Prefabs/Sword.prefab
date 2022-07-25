@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8807725933202136230}
   - component: {fileID: 8807725933202136249}
   m_Layer: 0
-  m_Name: Item
+  m_Name: Sword
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 6570c2632eb0cb74a8508c2e208fcd83, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bb3c4f62729ef6e4b9cf16bafb76c04b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360444c0a6976e2489404a21c8080f92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: f5d38d1c8d0304844a3e83cf9bd7db4d, type: 2}
+  item: {fileID: 11400000, guid: dc2d04bd750d489439f18acb23f32524, type: 2}
   sr: {fileID: 8807725933202136228}
 --- !u!61 &8807725933202136249
 BoxCollider2D:

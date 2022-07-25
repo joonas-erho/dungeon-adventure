@@ -557,7 +557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &282933420
 Transform:
   m_ObjectHideFlags: 0
@@ -2119,11 +2119,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenActions: 0.5
   levels:
-  - {fileID: 7324517983719040175, guid: a818fade910ad884a98b58520397527f, type: 3}
-  - {fileID: 7324517983719040175, guid: 09a3a1d76ac74af4dbd96c533dd6e566, type: 3}
-  - {fileID: 7324517983719040175, guid: 044eaf88f1976af4c8ece40a1f2c9aad, type: 3}
-  - {fileID: 7324517983719040175, guid: 2c6a2d730993f2648851d57d18ed4fb7, type: 3}
-  currentLevelIndex: 0
+  - {fileID: 7324517983719040175, guid: 416e07d295368dd4cad3ddf7181f959e, type: 3}
+  - {fileID: 7324517983719040175, guid: 5b9a6671de498cb4cb95463b74d3705d, type: 3}
+  - {fileID: 7324517983719040175, guid: b569aac41dd9de144a597b6723dfde71, type: 3}
+  - {fileID: 7324517983719040175, guid: af018d405cf496542ad19ca278b174b3, type: 3}
+  - {fileID: 7324517983719040175, guid: a04a418051980c14cbdc18a73c79a3f7, type: 3}
+  currentLevelIndex: 4
   currentLevelController: {fileID: 0}
   actionPrefab: {fileID: 4566816660539465745, guid: 0641e0f03de34ec4792c5464461be096, type: 3}
   playerController: {fileID: 0}

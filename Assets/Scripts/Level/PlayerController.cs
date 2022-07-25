@@ -146,6 +146,13 @@ public class PlayerController : MonoBehaviour
             // Temporary since there is no death animation implemented yet.
             sr.sprite = null;
         }
+
+        if (other.tag == "Door") {
+            DoorController doorController = other.gameObject.GetComponent<DoorController>();
+            if (doorController.amountOfKeysNeeded == 0) {
+                StartCoroutine(WinLevel());
+            }
+        }
     }
 
     private void PickupItem() {
