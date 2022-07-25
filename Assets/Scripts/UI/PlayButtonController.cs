@@ -17,13 +17,11 @@ public class PlayButtonController : MonoBehaviour
         if (!isRunning) {
             gameController.Execute();
             sr.sprite = sprites[1];
+            isRunning = true;
         }
         else {
             gameController.queueShouldBeStopped = true;
-            sr.sprite = sprites[0];
         }
-
-        isRunning = !isRunning;
     }
 
     public void StopRunning() {

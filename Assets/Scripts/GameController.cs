@@ -107,7 +107,7 @@ public class GameController : MonoBehaviour
     }
 
     public void ShowLevelText(int index) {
-        levelText.text = "Level " + ++index;
+        levelText.text = (++index).ToString();
     }
 
     /// <summary>
