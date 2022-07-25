@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour
         queueShouldBeStopped = true;
         levelIsWon = true;
         victoryScreenController.gameObject.SetActive(true);
-        victoryScreenController.DisplayScore(CalculateActionScore(), CalculateTreasureScore(), CalculateMonsterScore());
+        victoryScreenController.DisplayScore(CalculateActionScore(), CalculateTreasureScore(), CalculateMonsterScore(), currentLevelIndex + 1);
     }
 
     public void ShowLevelText(int index) {

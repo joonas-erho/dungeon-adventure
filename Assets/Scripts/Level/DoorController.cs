@@ -18,6 +18,10 @@ public class DoorController : MonoBehaviour
 
     public SpriteRenderer sr;
 
+    void Start() {
+        sr.sprite = doorSprites[amountOfKeysNeeded];
+    }
+
     /// <summary>
     /// This is called when the player is standing on the door and uses a key from inventory.
     /// </summary>

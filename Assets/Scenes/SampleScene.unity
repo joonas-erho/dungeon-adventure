@@ -586,6 +586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b611b2858eca82c488eab2cdb6f87fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  congratulationText: {fileID: 1387359969}
+  levelText: {fileID: 1151993781}
   actionsUsedScoreText: {fileID: 1964506897}
   treasuresScoreText: {fileID: 767023618}
   monstersScoreText: {fileID: 603389475}
