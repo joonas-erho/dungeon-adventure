@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource keyClink;
     public AudioSource footsteps;
     public AudioSource swordPickup;
+    public AudioSource swordMiss;
+    public AudioSource swordHit;
 
     public Sprite spriteWithSword;
     public GameObject swingAnimPrefab;
@@ -212,6 +214,10 @@ public class PlayerController : MonoBehaviour
             if (other.tag == "Monster") {
                 Destroy(other.gameObject, 0.15f);
                 monstersKilled++;
+                swordHit.Play();
+            }
+            else {
+                swordMiss.Play();
             }
         }
     }
