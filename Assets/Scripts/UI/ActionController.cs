@@ -29,6 +29,9 @@ public class ActionController : MonoBehaviour
     }
     
     void OnMouseDown() {
+        if (gameController.isRunning) {
+            return;
+        }
         // Depending on whether or not this Action is queued, we either add a copy of this Action
         // to the queue, or remove this from the queue.
         if (!isQueued) {

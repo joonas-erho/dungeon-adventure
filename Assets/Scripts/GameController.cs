@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
     private int treasureValue = 50;
     private int monsterValue = 100;
 
+    private int totalPoints = 0;
+
     // Level management variables
     public GameObject[] levels;
     public int currentLevelIndex;
@@ -45,6 +47,7 @@ public class GameController : MonoBehaviour
     // List of all actions. (Used mainly editor-side)
     public List<ActionScriptableObject> actions = new();
     
+    public bool isRunning = false;
     public bool queueShouldBeStopped = false;
     public bool levelIsWon = false;
 
@@ -97,6 +100,8 @@ public class GameController : MonoBehaviour
     }
 
     public void GoToNextLevel() {
+        // If player chooses to go to next level, add the obtained score to total score.
+        totalPoints = totalPoints + CalculateActionScore() + CalculateTreasureScore() + CalculateMonsterScore();
         currentLevelIndex++;
         victoryScreenController.gameObject.SetActive(false);
         LoadNewLevel(currentLevelIndex);
@@ -107,6 +112,12 @@ public class GameController : MonoBehaviour
         levelIsWon = true;
         victoryScreenController.gameObject.SetActive(true);
         victoryScreenController.DisplayScore(CalculateActionScore(), CalculateTreasureScore(), CalculateMonsterScore(), currentLevelIndex + 1);
+        
+        // If player won the last level
+        if (currentLevelIndex == levels.Length - 1) {
+            totalPoints = totalPoints + CalculateActionScore() + CalculateTreasureScore() + CalculateMonsterScore();
+            victoryScreenController.DisplayFinalScore(totalPoints);
+        }
     }
 
     public void ShowLevelText(int index) {
@@ -142,6 +153,7 @@ public class GameController : MonoBehaviour
     }
 
     private IEnumerator ActionLoop() {
+        isRunning = true;
         List<ActionController> queuedActions = queueController.GetActions();
         List<string> words = new List<string>();
         foreach (var actionController in queuedActions) {
@@ -163,7 +175,7 @@ public class GameController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        
+        isRunning = false;
         if (!levelIsWon) {
             ResetLevel();
         }

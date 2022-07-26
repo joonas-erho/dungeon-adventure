@@ -12,6 +12,7 @@ public class VictoryScreenController : MonoBehaviour
     public TextMeshProUGUI treasuresScoreText;
     public TextMeshProUGUI monstersScoreText;
     public TextMeshProUGUI totalScoreText;
+    public TextMeshProUGUI finalScoreText;
 
     public GameController gameController;
 
@@ -39,5 +40,12 @@ public class VictoryScreenController : MonoBehaviour
         treasuresScoreText.text = treasureScore.ToString();
         monstersScoreText.text = monsterScore.ToString();
         totalScoreText.text = (actionScore + treasureScore + monsterScore).ToString();
+    }
+
+    public void DisplayFinalScore(int totalScore) {
+        tryAgainButton.gameObject.SetActive(false);
+        nextLevelButton.gameObject.SetActive(false);
+        finalScoreText.gameObject.SetActive(true);
+        finalScoreText.text = "Your total score:\n" + totalScore;
     }
 }

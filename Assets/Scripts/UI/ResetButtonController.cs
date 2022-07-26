@@ -7,6 +7,10 @@ public class ResetButtonController : MonoBehaviour
     public GameController gameController;
 
     void OnMouseDown() {
+        if (gameController.isRunning) {
+            return;
+        }
+        
         gameController.ResetQueue();
     }
 }

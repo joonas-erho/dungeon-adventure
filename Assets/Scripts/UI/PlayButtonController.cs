@@ -10,14 +10,11 @@ public class PlayButtonController : MonoBehaviour
 
     public Sprite[] sprites;
 
-    private bool isRunning = false;
-
     // When player presses the Play button, the game controller tells the player to execute the actions.
     void OnMouseDown() {
-        if (!isRunning) {
+        if (!gameController.isRunning) {
             gameController.Execute();
             sr.sprite = sprites[1];
-            isRunning = true;
         }
         else {
             gameController.queueShouldBeStopped = true;
@@ -25,7 +22,6 @@ public class PlayButtonController : MonoBehaviour
     }
 
     public void StopRunning() {
-        isRunning = false;
         sr.sprite = sprites[0];
     }
 }
