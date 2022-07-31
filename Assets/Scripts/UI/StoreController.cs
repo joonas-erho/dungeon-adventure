@@ -1,3 +1,10 @@
+/// <summary>
+/// Store Controller
+/// Joonas Erho, 31.07.2022
+/// 
+/// This class controls the action store.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

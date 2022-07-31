@@ -1,10 +1,14 @@
+/// <summary>
+/// Action Controller
+/// Joonas Erho & Melinda Suvivirta, 31.07.2022
+/// 
+/// This class controls an action, both in the store and the queue.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// This class controls Actions, both in store and queue.
-/// </summary>
 public class ActionController : MonoBehaviour
 {
     // GameController that handles the whole scene.

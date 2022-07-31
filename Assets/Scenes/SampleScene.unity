@@ -2256,7 +2256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa361353284616a49bc8536c2286e98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenActions: 0.5
   levels:
   - {fileID: 7324517983719040175, guid: 416e07d295368dd4cad3ddf7181f959e, type: 3}
   - {fileID: 7324517983719040175, guid: 5b9a6671de498cb4cb95463b74d3705d, type: 3}
@@ -2269,33 +2268,23 @@ MonoBehaviour:
   - {fileID: 7324517983719040175, guid: 3a38c72afd42a6d4c8814e064b0c1880, type: 3}
   - {fileID: 7324517983719040175, guid: fade17f7357199d4793a1a9dc7dfe209, type: 3}
   currentLevelIndex: 0
-  currentLevelController: {fileID: 0}
   actionPrefab: {fileID: 4566816660539465745, guid: 0641e0f03de34ec4792c5464461be096, type: 3}
+  currentLevelController: {fileID: 0}
   playerController: {fileID: 0}
   doorController: {fileID: 0}
   storeController: {fileID: 320237513}
   queueController: {fileID: 2015158046}
   victoryScreenController: {fileID: 282933421}
+  playButtonController: {fileID: 1235262}
   inventoryRenderers:
   - {fileID: 1151578285}
   - {fileID: 760427110}
   - {fileID: 474004280}
   swordRenderer: {fileID: 419652094}
-  playButtonController: {fileID: 1235262}
-  actions:
-  - {fileID: 11400000, guid: 0864fd95598f8f44892ee41dc690daa9, type: 2}
-  - {fileID: 11400000, guid: f74e43e3ddc0b7e41bbb2a68a647b379, type: 2}
-  - {fileID: 11400000, guid: ba137acaf79f42749a86da2ebe3692f3, type: 2}
-  - {fileID: 11400000, guid: 120198d2adc869e48959dcc403f81440, type: 2}
-  - {fileID: 11400000, guid: a38fdb123396aa44dbb15b4d3c3eb303, type: 2}
-  - {fileID: 11400000, guid: 5f2209fd522efc3428ea34757a457a46, type: 2}
-  - {fileID: 11400000, guid: e424b41c87dda1b4eba80b0029db1edd, type: 2}
-  - {fileID: 11400000, guid: a2ec771ad399bc343a3640ee028ffb17, type: 2}
-  - {fileID: 11400000, guid: c21815670ab983148ac5b469f9abbea0, type: 2}
+  levelText: {fileID: 1771620033}
+  isRunning: 0
   queueShouldBeStopped: 0
   levelIsWon: 0
-  levelText: {fileID: 1771620033}
-  points: 0
 --- !u!4 &1092834976
 Transform:
   m_ObjectHideFlags: 0

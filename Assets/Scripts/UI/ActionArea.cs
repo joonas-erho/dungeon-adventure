@@ -1,3 +1,10 @@
+/// <summary>
+/// Action Area
+/// Joonas Erho, 31.07.2022
+/// 
+/// A common class for the queue and store controllers.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

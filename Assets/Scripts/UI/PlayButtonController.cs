@@ -1,3 +1,10 @@
+/// <summary>
+/// Play Button Controller
+/// Joonas Erho & Melinda Suvivirta, 31.07.2022
+/// 
+/// This class controls the button used to begin and stop execution of actions.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +28,9 @@ public class PlayButtonController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets the button to the play state.
+    /// </summary>
     public void StopRunning() {
         sr.sprite = sprites[0];
     }
