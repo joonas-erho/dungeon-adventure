@@ -6,10 +6,6 @@
 /// In the future, inventory functionality should be moved from the GameController to this class.
 /// </summary>
 
-
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour

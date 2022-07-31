@@ -1,8 +1,13 @@
+/// <summary>
+/// Actor
+/// Joonas Erho & Melinda Suvivirta, 31.07.2022
+/// 
+/// NOT YET IMPLEMENTED
+/// In the future, the player and monster classes inherit from this.
+/// </summary>
+
 using UnityEngine;
 
-/// <summary>
-/// This is a common class for Player and Monster shared behaviour.
-/// </summary>
 public class Actor : MonoBehaviour {
-    // Not yet implemented.
+
 }

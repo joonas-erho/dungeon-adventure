@@ -1,10 +1,14 @@
+/// <summary>
+/// Door Controller
+/// Joonas Erho & Melinda Suvivirta, 31.07.2022
+/// 
+/// Handles the goal of each level, which is a door with 0-3 locks.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Handles the goal of each level, which is a door with 0-3 locks.
-/// </summary>
 public class DoorController : MonoBehaviour
 {
     public GameController gameController;

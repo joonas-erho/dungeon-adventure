@@ -1,3 +1,10 @@
+/// <summary>
+/// Monster Controller
+/// Joonas Erho & Melinda Suvivirta, 31.07.2022
+/// 
+/// Controls each individual monster.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

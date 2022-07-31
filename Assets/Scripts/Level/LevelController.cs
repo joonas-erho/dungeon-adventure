@@ -1,11 +1,15 @@
+/// <summary>
+/// Level Controller
+/// Joonas Erho & Melinda Suvivirta, 31.07.2022
+/// 
+/// Controls each individual level. The scene of the game never changes, but instead the
+/// GameController loads a new level, which is controlled by an instance of this class.
+/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// Controls each individual level. The scene of the game never changes, but instead the
-/// GameController loads a new level, which is controlled by an instance of this class.
-/// </summary>
 public class LevelController : MonoBehaviour
 {
     // ID of this level. (first level is 0)
