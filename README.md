@@ -16,7 +16,7 @@ Pelissä on vielä kehitettävää, esimerkiksi olemassa olevien käskyjen väli
 
 Dungeon Adventure is a game prototype for the Game Design Challenge course at the University of Jyväskylä. The course brochure (mostly in Finnish) can be found [here](https://sisu.jyu.fi/student/courseunit/otm-4c3ee968-c6ab-4cd0-b70a-874767e2e43c/brochure). This game was created as a team with Melinda Suvivirta.
 
-This game is a prototype for the third cycle of the course. The special requirement for this cycle was to create a game that could be used to market IT to students aged 12-18. Our plan was to create a game where the player has to do simliar thinking as when programming, since there is a limited amount of commands available that need to be sequenced correctly for the player to complete a level.
+This game is a prototype for the third cycle of the course. The special requirement for this cycle was to create a game that could be used to market IT to students aged 12-18. Our plan was to create a game where the player has to do similar thinking as when programming, since there is a limited amount of commands available that need to be sequenced correctly for the player to complete a level.
 
 Dungeon Adventure still has a lot of untapped potential. For example, the command system doesn't currently allow for adding new commands in-between existing ones, which can create frustrating situations. The game could also be developed further with new levels and game mechanics. Nevertheless, it already has a nice and polished look and feel and is at least almost bug-free.
 
